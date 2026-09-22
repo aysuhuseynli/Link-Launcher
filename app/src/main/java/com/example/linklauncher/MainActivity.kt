@@ -21,7 +21,6 @@ import androidx.compose.material.icons.filled.Link
 import androidx.compose.material.icons.filled.RocketLaunch
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -38,7 +37,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import com.example.linklauncher.ui.theme.LinkLauncherTheme
@@ -49,19 +47,13 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             LinkLauncherTheme {
-                MainContent()
+                Scaffold(
+                    modifier = Modifier.fillMaxSize()
+                ) { innerPadding ->
+                    LinkLauncherScreen(modifier = Modifier.padding(innerPadding))
+                }
             }
         }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MainContent() {
-    Scaffold(
-        modifier = Modifier.fillMaxSize()
-    ) { innerPadding ->
-        LinkLauncherScreen(modifier = Modifier.padding(innerPadding))
     }
 }
 
@@ -143,13 +135,5 @@ fun LinkLauncherScreen(modifier: Modifier = Modifier) {
                 fontWeight = FontWeight.SemiBold
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun LinkLauncherPreview() {
-    LinkLauncherTheme {
-        MainContent()
     }
 }
